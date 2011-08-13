@@ -1,6 +1,10 @@
 # encoding: utf-8
-require 'sinatra'
-require 'haml'
+require "rubygems"
+require "bundler/setup"
+
+# get all the gems in
+Bundler.require(:default)
+
 
 require_relative 'minify_resources'
 class MyApp < Sinatra::Application
@@ -15,6 +19,8 @@ class MyApp < Sinatra::Application
 	end
 
 	configure :development do
+	  set :server, %w[unicorn thin webrick]
+    set :show_exceptions, true
 		set :css_files, MinifyResources::CSS_FILES
 		set :js_files,  MinifyResources::JS_FILES
 	end

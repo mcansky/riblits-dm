@@ -1,6 +1,11 @@
 # encoding: utf-8
-require 'sequel'
-# DB = Sequel.postgres 'dbname', user:'bduser', password:'dbpass', host:'localhost'
-# DB << "SET CLIENT_ENCODING TO 'UTF8';"
+DataMapper::Logger.new($stdout, :debug)
 
-#require_relative 'users'
+DataMapper.setup(:default, :adapter => "mysql", :database => "1111111", :username => "111", :password => "11111111")
+
+require_relative 'user'
+require_relative 'project'
+require_relative 'session'
+
+DataMapper.finalize
+DataMapper.auto_upgrade!
